@@ -1,8 +1,7 @@
 using MongoDB.Driver;
 using TerminalRaid.Models;
 
-namespace TerminalRaid.Services
-{
+namespace TerminalRaid.Services;
     public class MiningService
     {
         private readonly IMongoCollection<MiningSession> _miningSessions;
@@ -87,7 +86,7 @@ namespace TerminalRaid.Services
         public async Task<MiningSession?> GetActiveMiningSessionAsync(string playerId)
         {
             return await _miningSessions
-                .Find(s => s.OwnerId == playerId && s.EndTimestamp > DateTime.UtcNow)
+                .Find(s => s.OwnerId == playerId && s.EndTimestamp > DateTimeOffset.UtcNow)
                 .FirstOrDefaultAsync();
         }
 
@@ -138,4 +137,3 @@ namespace TerminalRaid.Services
             };
         }
     }
-}

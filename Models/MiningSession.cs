@@ -1,8 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace TerminalRaid.Models
-{
+namespace TerminalRaid.Models;
     public class MiningSession
     {
         [BsonId]
@@ -10,8 +9,8 @@ namespace TerminalRaid.Models
         public string Id { get; set; }
         public string OwnerId { get; set; }
         public double RTKPerSecond { get; set; }
-        public DateTime StartTimestamp { get; set; }
-        public DateTime EndTimestamp { get; set; }
+        public DateTimeOffset StartTimestamp { get; set; }
+        public DateTimeOffset EndTimestamp { get; set; }
         public double TotalRTKProduced { get; set; }
 
         public MiningSession(string playerId, double rtkPerSecond)
@@ -19,8 +18,8 @@ namespace TerminalRaid.Models
             Id = ObjectId.GenerateNewId().ToString();
             OwnerId = playerId;
             RTKPerSecond = rtkPerSecond;
-            StartTimestamp = DateTime.UtcNow;
-            EndTimestamp = DateTime.UtcNow.AddYears(1); // Set far future for active sessions
+            StartTimestamp = DateTimeOffset.UtcNow;
+            EndTimestamp = DateTimeOffset.UtcNow.AddYears(1); // Set far future for active sessions
             TotalRTKProduced = 0;
         }
 
@@ -28,25 +27,24 @@ namespace TerminalRaid.Models
         {
             if (!IsActive()) return 0;
             
-            var now = DateTime.UtcNow;
+            var now = DateTimeOffset.UtcNow;
             var miningDuration = (now - StartTimestamp).TotalSeconds;
             return miningDuration * RTKPerSecond;
         }
 
         public bool IsActive()
         {
-            return EndTimestamp > DateTime.UtcNow;
+            return EndTimestamp > DateTimeOffset.UtcNow;
         }
 
         public void StopMining()
         {
-            EndTimestamp = DateTime.UtcNow;
+            EndTimestamp = DateTimeOffset.UtcNow;
         }
 
         public TimeSpan GetMiningDuration()
         {
-            var endTime = IsActive() ? DateTime.UtcNow : EndTimestamp;
+            var endTime = IsActive() ? DateTimeOffset.UtcNow : EndTimestamp;
             return endTime - StartTimestamp;
         }
     }
-}

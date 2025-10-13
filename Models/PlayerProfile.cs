@@ -1,8 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace TerminalRaid.Models
-{
+namespace TerminalRaid.Models;
     public class PlayerProfile
     {
         [BsonId]
@@ -28,18 +27,18 @@ namespace TerminalRaid.Models
         public bool IsOnline { get; set; }
 
         [BsonElement("lastSeen")]
-        public DateTime LastSeen { get; set; }
+        public DateTimeOffset LastSeen { get; set; }
 
         [BsonElement("joinedAt")]
-        public DateTime JoinedAt { get; set; }
+        public DateTimeOffset JoinedAt { get; set; }
 
         public PlayerProfile()
         {
             ProfileId = ObjectId.GenerateNewId().ToString();
             Specs = new PlayerSpecs();
             IsOnline = false;
-            JoinedAt = DateTime.UtcNow;
-            LastSeen = DateTime.UtcNow;
+            JoinedAt = DateTimeOffset.UtcNow;
+            LastSeen = DateTimeOffset.UtcNow;
         }
 
         public PlayerProfile(string playerId, string username) : this()
@@ -57,7 +56,7 @@ namespace TerminalRaid.Models
 
         public void UpdateLastSeen()
         {
-            LastSeen = DateTime.UtcNow;
+            LastSeen = DateTimeOffset.UtcNow;
         }
 
         public void SetOnlineStatus(bool online)
@@ -67,4 +66,3 @@ namespace TerminalRaid.Models
                 UpdateLastSeen();
         }
     }
-}

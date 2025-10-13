@@ -1,8 +1,7 @@
 using MongoDB.Driver;
 using TerminalRaid.Models;
 
-namespace TerminalRaid.Services
-{
+namespace TerminalRaid.Services;
     public class AuthService
     {
         private readonly IMongoCollection<PlayerCredentials> _credentials;
@@ -69,4 +68,3 @@ namespace TerminalRaid.Services
             }
         }
     }
-}

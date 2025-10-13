@@ -2,8 +2,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using BCrypt.Net;
 
-namespace TerminalRaid.Models
-{
+namespace TerminalRaid.Models;
     public class PlayerCredentials
     {
         [BsonId]
@@ -17,12 +16,12 @@ namespace TerminalRaid.Models
         public string PasswordHash { get; set; }
 
         [BsonElement("createdAt")]
-        public DateTime CreatedAt { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
 
         public PlayerCredentials()
         {
             PlayerId = ObjectId.GenerateNewId().ToString();
-            CreatedAt = DateTime.UtcNow;
+            CreatedAt = DateTimeOffset.UtcNow;
         }
 
         public PlayerCredentials(string username, string password) : this()
@@ -36,4 +35,3 @@ namespace TerminalRaid.Models
             return BCrypt.Net.BCrypt.Verify(password, PasswordHash);
         }
     }
-}

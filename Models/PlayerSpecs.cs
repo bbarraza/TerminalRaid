@@ -1,8 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace TerminalRaid.Models
-{
+namespace TerminalRaid.Models;
     public class PlayerSpecs
     {
         [BsonElement("cpuTier")]
@@ -21,7 +20,7 @@ namespace TerminalRaid.Models
         public int PsuTier { get; set; }
 
         [BsonElement("lastUpgrade")]
-        public DateTime LastUpgrade { get; set; }
+        public DateTimeOffset LastUpgrade { get; set; }
 
         [BsonElement("totalSpent")]
         public double TotalSpent { get; set; }
@@ -33,7 +32,7 @@ namespace TerminalRaid.Models
             GpuTier = 1;
             DiskTier = 1;
             PsuTier = 1;
-            LastUpgrade = DateTime.UtcNow;
+            LastUpgrade = DateTimeOffset.UtcNow;
             TotalSpent = 0;
         }
 
@@ -82,7 +81,7 @@ namespace TerminalRaid.Models
             
             SetComponentTier(componentType, targetTier);
             TotalSpent += cost;
-            LastUpgrade = DateTime.UtcNow;
+            LastUpgrade = DateTimeOffset.UtcNow;
             return true;
         }
 
@@ -188,4 +187,3 @@ namespace TerminalRaid.Models
             };
         }
     }
-}

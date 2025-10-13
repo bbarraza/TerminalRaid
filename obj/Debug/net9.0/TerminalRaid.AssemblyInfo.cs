@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TerminalRaid")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b34d4fb52c867fa32c126a2482d6238c69eb755")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c91e2947cb5617ea638f96547885cbf242fe253")]
 [assembly: System.Reflection.AssemblyProductAttribute("TerminalRaid")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TerminalRaid")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
