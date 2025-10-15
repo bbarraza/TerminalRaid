@@ -13,6 +13,15 @@ builder.Services.AddSingleton<MongoDbService>();
 builder.Services.AddSingleton<JwtService>();
 builder.Services.AddSingleton<AuthService>();
 builder.Services.AddSingleton<MiningService>();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -29,9 +38,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 

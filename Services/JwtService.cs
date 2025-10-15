@@ -13,7 +13,7 @@ public class JwtService
 
     public JwtService(IConfiguration config)
     {
-        _secret = config["Jwt:Secret"] ?? throw new ArgumentNullException("Jwt:Secret");
+        _secret = config["Jwt:SecretKey"];
         _issuer = config["Jwt:Issuer"] ?? "TerminalRaid";
     }
 
