@@ -8,11 +8,11 @@ namespace TerminalRaid.Services;
         private readonly IMongoCollection<PlayerProfile> _profiles;
         private readonly IMongoCollection<RtkWallet> _wallets;
 
-        public AuthService(MongoDbService db)
+        public AuthService(MongoDbService MongoDbService)
         {
-            _credentials = db.Database.GetCollection<PlayerCredentials>("playerCredentials");
-            _profiles = db.Database.GetCollection<PlayerProfile>("playerProfiles");
-            _wallets = db.Database.GetCollection<RtkWallet>("wallets");
+            _credentials = MongoDbService.Database.GetCollection<PlayerCredentials>("playerCredentials");
+            _profiles = MongoDbService.Database.GetCollection<PlayerProfile>("playerProfiles");
+            _wallets = MongoDbService.Database.GetCollection<RtkWallet>("wallets");
         }
 
         public async Task<PlayerCredentials> RegisterAsync(string username, string password)

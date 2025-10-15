@@ -8,11 +8,11 @@ namespace TerminalRaid.Services;
         private readonly IMongoCollection<PlayerProfile> _playerProfiles;
         private readonly IMongoCollection<RtkWallet> _wallets;
 
-        public MiningService(MongoDbService mongoDbService)
+        public MiningService(MongoDbService MongoDbService)
         {
-            _miningSessions = mongoDbService.Database?.GetCollection<MiningSession>("miningSessions");
-            _playerProfiles = mongoDbService.Database?.GetCollection<PlayerProfile>("playerProfiles");
-            _wallets = mongoDbService.Database?.GetCollection<RtkWallet>("wallets");
+            _miningSessions = MongoDbService.Database?.GetCollection<MiningSession>("miningSessions");
+            _playerProfiles = MongoDbService.Database?.GetCollection<PlayerProfile>("playerProfiles");
+            _wallets = MongoDbService.Database?.GetCollection<RtkWallet>("wallets");
         }
 
         public async Task<MiningSession?> StartMiningAsync(string playerId)

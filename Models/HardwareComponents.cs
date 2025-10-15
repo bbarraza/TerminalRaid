@@ -1,7 +1,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace TerminalRaid.Models
-{
+namespace TerminalRaid.Models;
+
     public class HardwareComponent
     {
         [BsonElement("type")]
@@ -61,4 +61,3 @@ namespace TerminalRaid.Models
 
         };
     }
-}

@@ -12,6 +12,7 @@ namespace TerminalRaid.Controllers;
 
 public class PlayerController : ControllerBase
 {
+        
         private readonly IMongoCollection<PlayerProfile> _profiles;
     
         public PlayerController(MongoDbService mongoDbService)
